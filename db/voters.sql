@@ -1,0 +1,235 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 06, 2024 at 05:05 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `votesystem`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `voters`
+--
+
+CREATE TABLE `voters` (
+  `id` int(11) NOT NULL,
+  `class` varchar(512) DEFAULT NULL,
+  `voters_id` int(11) DEFAULT NULL,
+  `firstname` varchar(512) DEFAULT NULL,
+  `lastname` varchar(512) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `voters`
+--
+
+INSERT INTO `voters` (`id`, `class`, `voters_id`, `firstname`, `lastname`, `password`) VALUES
+(1, 'S.3 C', 6882, 'ASHABA', 'PRISCILLA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(2, 'S.3 C', 6425, 'BABIRYE', 'FLAVIA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(3, 'S.3 C', 6900, 'BAKWERA', 'SOLOME', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(4, 'S.3 C', 6953, 'BBUULE', 'RYAN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(5, 'S.3 C', 6427, 'BUKIRWA', 'BIRUNGI', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(6, 'S.3 C', 6429, 'JJEMBA', 'JONATHAN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(7, 'S.3 C', 6430, 'JJINGO', 'HENRY', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(8, 'S.3 C', 6431, 'KABENGWA', 'RONALD', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(9, 'S.3 C', 6432, 'KAGALI', 'QURAISH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(10, 'S.3 C', 6433, 'KALIJA', 'ERIC', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(11, 'S.3 C', 6434, 'KALYESUBULA', 'MIKISA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(12, 'S.3 C', 6436, 'KANZIIRA', 'OSBERT', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(13, 'S.3 C', 6437, 'KASENDWA', 'SWAIBU', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(14, 'S.3 C', 6440, 'KAVULU', 'TIMOTHY', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(15, 'S.3 C', 6441, 'KAWUMA', 'FAIZO', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(16, 'S.3 C', 6442, 'KAYEMBA', 'FAHIM', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(17, 'S.3 C', 6443, 'KIBIRIGE', 'FRANK', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(18, 'S.3 C', 6446, 'KIRIWERO', 'JOSEPH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(19, 'S.3 C', 6447, 'KISSEKA', 'DAVID', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(20, 'S.3 C', 6448, 'KUKUNDAKWE', 'LIVIA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(21, 'S.3 C', 6450, 'LUBEGA', 'LATIF', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(22, 'S.3 C', 6452, 'LWANGA', 'ANTONIO', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(23, 'S.3 C', 6453, 'LWEGABA', 'DAVIS', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(24, 'S.3 C', 6428, 'MABIKE', 'FAHAD', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(25, 'S.3 C', 6454, 'MATTA', 'ARNOLD', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(26, 'S.3 C', 6455, 'MIREMBE', 'PRINCESS', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(27, 'S.3 C', 6456, 'MUGABI', 'DEO', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(28, 'S.3 C', 6457, 'MUGERWA', 'SAMUEL', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(29, 'S.3 C', 6945, 'MUGISHA', 'RAYMOND', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(30, 'S.3 C', 6458, 'MUGUMYA', 'RAHIM', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(31, 'S.3 C', 6459, 'MUHWANA', 'EMMANUEL', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(32, 'S.3 C', 6462, 'MUTEBI', 'ISAAC..', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(33, 'S.3 C', 6463, 'MWESIGWA', 'ALLAN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(34, 'S.3 C', 6464, 'NAAVA', 'NAKAKEMBO', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(35, 'S.3 C', 6465, 'NABATANZI', 'SHARIFA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(36, 'S.3 C', 6466, 'NABISERE', 'BRENDAH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(37, 'S.3 C', 6468, 'NAJJUUKO', 'HARTER', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(38, 'S.3 C', 6470, 'NAKANDI', 'JUSTINE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(39, 'S.3 C', 6472, 'NAKATO', 'MARION', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(40, 'S.3 C', 6527, 'NAKAVUMA', 'JALIDAH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(41, 'S.3 C', 6891, 'NAKAWUNGU', 'RUTH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(42, 'S.3 C', 6474, 'NAKAZIBWE', 'JULIET', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(43, 'S.3 C', 6477, 'NAKIMULI', 'JACKLINE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(44, 'S.3 C', 6524, 'NAKIYAGA', 'SHAMIA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(45, 'S.3 C', 6881, 'NAKIZITO', 'LILIAN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(46, 'S.3 C', 6479, 'NAKKAZI', 'IRENE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(47, 'S.3 C', 5663, 'NALUBEGA', 'SHADIA.', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(48, 'S.3 C', 6480, 'NALUGGYA', 'JOVIA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(49, 'S.3 C', 6481, 'NALUZZE', 'WINNIE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(50, 'S.3 C', 6483, 'NAMAKULA', 'PATIENCE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(51, 'S.3 C', 6488, 'NAMUBIRU', 'BELINDA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(52, 'S.3 C', 6490, 'NAMUDDU', 'ANGELLA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(53, 'S.3 C', 6491, 'NAMUDDU', 'TEDDY', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(54, 'S.3 C', 6494, 'NAMUKWAAYA', 'JOVIA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(55, 'S.3 C', 6495, 'NAMULINDWA', 'MARIA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(56, 'S.3 C', 6496, 'NAMUTEBI', 'MABLE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(57, 'S.3 C', 6927, 'NANKYA', 'FAITH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(58, 'S.3 C', 6498, 'NANSUBUGA', 'DENISHA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(59, 'S.3 C', 6499, 'NANTEZA', 'RAHMAH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(60, 'S.3 C', 6503, 'NAYIGA', 'ZAINAH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(61, 'S.3 C', 6955, 'NDAGIRE', 'GIFT', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(62, 'S.3 C', 6506, 'NYIRAMUGISHA', 'FLORENCE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(63, 'S.3 C', 6507, 'ORIBARIHO', 'PAUSON', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(64, 'S.3 C', 6508, 'OTANDEKA', 'NOBLE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(65, 'S.3 C', 6509, 'SSALI', 'LUQMAN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(66, 'S.3 C', 6510, 'SSEBUWUFU', 'OWEN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(67, 'S.3 C', 6511, 'SSEMPEBWA', 'ABUBAKARI', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(68, 'S.3 C', 6512, 'SSENGENDO', 'GONZAGA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(69, 'S.3 C', 6513, 'SSENKUMBA', 'BASHIR', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(70, 'S.3 C', 6885, 'SSENTEZA', 'KAJJUBI', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(71, 'S.3 C', 6514, 'SSERUBIRI', 'DANIEL', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(72, 'S.3 C', 6515, 'SSERUGO', 'AUGUSTINE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(73, 'S.3 C', 6516, 'TAMALE', 'BENJAMIN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(74, 'S.3 C', 6517, 'TAMALE', 'DERRICK', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(75, 'S.3 C', 6875, 'TUMWINE', 'JOASH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(76, 'S.3 C', 6518, 'TWINOMUGISHA', 'HASSAN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(77, 'S.3 C', 6519, 'WAIGONDA', 'IAN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(78, 'S.3 C', 6520, 'WASSWA', 'HATIB', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(79, 'S.3 C', 6522, 'ZAWEDDE', 'CHRISTINE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(80, 'S.3 A', 6213, 'ADIKIN', 'SARAH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(81, 'S.3 A', 6214, 'AKANKWASA', 'MABLE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(82, 'S.3 A', 6850, 'BABALANDA', 'DAVID', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(83, 'S.3 A', 6216, 'BBOSA', 'ANIAL', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(84, 'S.3 A', 6312, 'GALUKANDE', 'HERMAN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(85, 'S.3 A', 6220, 'JJUUKO', 'IAN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(86, 'S.3 A', 6221, 'KABAALU', 'SHAFIQ', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(87, 'S.3 A', 6222, 'KALANZI', 'JUMA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(88, 'S.3 A', 6223, 'KALEMA', 'HASSAN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(89, 'S.3 A', 6224, 'KAMOGA', 'MUHAMMAD', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(90, 'S.3 A', 6225, 'KASOLO', 'SSENOGA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(91, 'S.3 A', 6226, 'KASUMBA', 'MARTIN.', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(92, 'S.3 A', 6227, 'KATO', 'DESMOND', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(93, 'S.3 A', 6228, 'KATO', 'GEOFREY', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(94, 'S.3 A', 6229, 'KAWEESA', 'EDIRISA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(95, 'S.3 A', 6230, 'KIBIRIGE', 'ABUBAKAR', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(96, 'S.3 A', 6237, 'KUSASIRA', 'CATHERINE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(97, 'S.3 A', 6861, 'KWAGALA', 'ERON', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(98, 'S.3 A', 6238, 'LUBEGA', 'BONNY', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(99, 'S.3 A', 6239, 'LUKWAGO', 'REGAN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(100, 'S.3 A', 6240, 'MAKOZI', 'YUSUF', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(101, 'S.3 A', 6241, 'MAWEJJE', 'JORAM', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(102, 'S.3 A', 6938, 'MBABAZI', 'PREVIA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(103, 'S.3 A', 6244, 'MUBIRU', 'GIFT', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(104, 'S.3 A', 6864, 'MUGANGA', 'ELIJAH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(105, 'S.3 A', 6245, 'MUGEZANGABO', 'HASSAN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(106, 'S.3 A', 6247, 'MUGUME', 'MURUNGI', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(107, 'S.3 A', 6248, 'MUKALAZI', 'AKRAM', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(108, 'S.3 A', 6249, 'MUKIZA', 'MULUSHID', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(109, 'S.3 A', 6313, 'MUKWAAYA', 'RICHARD', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(110, 'S.3 A', 6250, 'MULUGEYO', 'JOEL', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(111, 'S.3 A', 6251, 'MULUNGI', 'LUCKY', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(112, 'S.3 A', 6253, 'MURUNGI', 'BENJAMIN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(113, 'S.3 A', 6254, 'MUWONGE', 'NICHOLAS.', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(114, 'S.3 A', 6255, 'NABAKOOZA', 'KAUTHARAH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(115, 'S.3 A', 6257, 'NABBALE', 'SHANITAH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(116, 'S.3 A', 6930, 'NABBOSA', 'OLIVIA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(117, 'S.3 A', 6258, 'NABUKEERA', 'SUMAYAH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(118, 'S.3 A', 6259, 'NABUKENYA', 'MASTULAH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(119, 'S.3 A', 6260, 'NABULIME', 'SOFIA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(120, 'S.3 A', 6261, 'NAGGIRINYA', 'WINFRED', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(121, 'S.3 A', 6838, 'NAHURIRA', 'BRUSI', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(122, 'S.3 A', 6263, 'NAKALIISA', 'JESCA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(123, 'S.3 A', 6319, 'NAKAMYA', 'PHIONAH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(124, 'S.3 A', 6264, 'NAKANWAGI', 'WINNIE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(125, 'S.3 A', 6268, 'NAKIJOBA', 'JULIET', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(126, 'S.3 A', 6269, 'NAKISOZI', 'AMINAH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(127, 'S.3 A', 6859, 'NAKITENDE', 'NOELINE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(128, 'S.3 A', 6270, 'NAKIZITO', 'ESTHER', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(129, 'S.3 A', 6272, 'NALUBWAMA', 'SHIVAN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(130, 'S.3 A', 6274, 'NALULE', 'HILDAH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(131, 'S.3 A', 6278, 'NAMAKULA', 'CHRISTINE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(132, 'S.3 A', 6279, 'NAMAKULA', 'JAMIRAH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(133, 'S.3 A', 6283, 'NAMBATYA', 'HANIFAH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(134, 'S.3 A', 6284, 'NAMIRIMU', 'ANNET', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(135, 'S.3 A', 6315, 'NAMPIJJA', 'MICHELLE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(136, 'S.3 A', 6868, 'NAMUBIRU', 'GIFT', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(137, 'S.3 A', 6314, 'NAMUBIRU', 'MARIAM', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(138, 'S.3 A', 6285, 'NAMUBIRU', 'MILLY', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(139, 'S.3 A', 6286, 'NAMUGERA', 'AKIRAM', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(140, 'S.3 A', 6288, 'NAMULO', 'DANIELLA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(141, 'S.3 A', 6289, 'NAMULONDO', 'PATRICIA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(142, 'S.3 A', 6290, 'NAMUYIMBA', 'CISSY', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(143, 'S.3 A', 6291, 'NANSEREKO', 'FRIDAUCE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(144, 'S.3 A', 6836, 'NANTALE', 'JULIANAH', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(145, 'S.3 A', 6294, 'NANYONGA', 'BRIDGET', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(146, 'S.3 A', 6857, 'NASSOZI', 'NOELINE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(147, 'S.3 A', 6296, 'NASSUNA', 'ASSUMPTA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(148, 'S.3 A', 6297, 'NAZZIWA', 'PROSCOVIA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(149, 'S.3 A', 6855, 'NSEREKO', 'DALTON', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(150, 'S.3 A', 6298, 'NSEREKO', 'HANNIGTON', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(151, 'S.3 A', 6299, 'NSIMBE', 'EMMANUEL', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(152, 'S.3 A', 6300, 'SSALI', 'BENJAMIN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(153, 'S.3 A', 6301, 'SSEBIRUMBI', 'DERRICK', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(154, 'S.3 A', 6302, 'SSEGUJJA', 'JUMA', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(155, 'S.3 A', 6854, 'SSEMAKULA', 'IBRAHIM..', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(156, 'S.3 A', 6303, 'SSEMAKULA', 'JUDE', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(157, 'S.3 A', 6304, 'SSEMWOGERERE', 'TIMOTHY', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(158, 'S.3 A', 6858, 'SSEMYALO', 'BRIAN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(159, 'S.3 A', 6837, 'SSENKINDU', 'CHRISTOPHER', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(160, 'S.3 A', 6306, 'SSERUNKUUMA', 'DENNIS', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(161, 'S.3 A', 6307, 'SSEWAGUDDE', 'JORAM', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(162, 'S.3 A', 6308, 'TAMALE', 'MORGAN', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(163, 'S.3 A', 6309, 'TUKASHABA', 'ANGEL', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(164, 'S.3 A', 6310, 'WASSWA', 'CHARLES', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(165, 'S.3 A', 6311, 'YIGA', 'GERALD', '$2y$10$kl5DZEi011SbgJ0YZ66Lgupj/42ByR2AaoyQkaErkze9XU9UwLrle'),
+(166, NULL, 1839, 'VIC', 'IT', '$2y$10$8JHv41AC526cIea46hYVsOYpFRC0.8HROy1aj85i/OU4w1h9oQhiW'),
+(167, NULL, 473, 'KINTU', 'GEORGE', '$2y$10$AWCTxRTop1lmm/qttFA71ed52MRUoz/ijlf2aMCxAQGZdnNnDVGqa');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `voters`
+--
+ALTER TABLE `voters`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `voters`
+--
+ALTER TABLE `voters`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
