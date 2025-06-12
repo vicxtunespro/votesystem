@@ -21,4 +21,4 @@
 username  Nurhodelta
 password  password
 
-Brought to you by: www.CampCodes.com
+Brought to you by: Dementa Skills
