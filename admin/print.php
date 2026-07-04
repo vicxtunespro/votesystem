@@ -109,7 +109,11 @@ function generateRows($conn) {
             $statusClass = '';
             $rankDisplay = $rank;
 
-            if ($rank == 1 && $voteCount > 0) {
+            if (count($candidates) == 1) {
+                $status = 'UNOPPOSED';
+                $statusClass = 'unopposed';
+                $rankDisplay = '1st';
+            } elseif ($rank == 1 && $voteCount > 0) {
                 $status = 'WINNER';
                 $statusClass = 'winner';
                 $rankDisplay = '1st';
@@ -132,7 +136,9 @@ function generateRows($conn) {
             }
 
             $barColor = '#3498db';
-            if ($rank == 1 && $voteCount > 0) {
+            if (count($candidates) == 1) {
+                $barColor = '#7f8c8d';
+            } elseif ($rank == 1 && $voteCount > 0) {
                 $barColor = '#27ae60';
             } elseif ($rank == 2 && $voteCount > 0) {
                 $barColor = '#f39c12';
@@ -184,6 +190,7 @@ function generateRows($conn) {
 
 $parse = parse_ini_file('config.ini', FALSE, INI_SCANNER_RAW);
 $title = $parse['election_title'];
+$schoolName = isset($parse['school_name']) ? $parse['school_name'] : "ST. JUDE'S SECONDARY SCHOOL";
 
 // Total voters — computed here, in the same scope the header uses it, so it
 // no longer silently disappears (it was previously calculated inside
@@ -192,6 +199,16 @@ $totalSql = "SELECT COUNT(DISTINCT voters_id) as total FROM votes";
 $totalQuery = $conn->query($totalSql);
 $totalRow = $totalQuery->fetch_assoc();
 $totalVoters = (int) $totalRow['total'];
+
+// Embed the logo as a data URI rather than a relative file path — Dompdf
+// doesn't reliably resolve relative image paths depending on where the
+// script runs from, so this avoids a broken-image icon in the PDF.
+$logoPath = __DIR__ . '/../images/logo.png';
+$logoHtml = '';
+if (file_exists($logoPath)) {
+    $logoData = base64_encode(file_get_contents($logoPath));
+    $logoHtml = "<img src='data:image/png;base64,{$logoData}' class='logo' alt='School logo'>";
+}
 
 $dompdf = new Dompdf();
 
@@ -214,11 +231,30 @@ $html = "
         border-bottom: 3px solid #2c3e50;
     }
 
+    .header .logo {
+        display: block;
+        margin: 0 auto 12px;
+        width: 68px;
+        height: 68px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid #2c3e50;
+    }
+
     .header h1 {
         margin: 0;
-        font-size: 28px;
+        font-size: 24px;
         letter-spacing: 2px;
         text-transform: uppercase;
+        color: #2c3e50;
+    }
+
+    .header .election-title {
+        margin: 6px 0 0 0;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
         color: #2c3e50;
     }
 
@@ -422,6 +458,56 @@ $html = "
         color: white;
     }
 
+    .status-badge.unopposed {
+        background: #7f8c8d;
+        color: white;
+    }
+
+    .signatures {
+        margin-top: 45px;
+        padding-top: 18px;
+        border-top: 2px solid #ecf0f1;
+        page-break-inside: avoid;
+    }
+
+    .signatures .sig-title {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #7f8c8d;
+        margin-bottom: 30px;
+    }
+
+    .sig-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+    }
+
+    .sig-block {
+        flex: 1;
+        text-align: center;
+    }
+
+    .sig-line {
+        border-bottom: 1px solid #2c3e50;
+        height: 36px;
+    }
+
+    .sig-role {
+        margin: 8px 0 0;
+        font-size: 12px;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    .sig-meta {
+        margin: 2px 0 0;
+        font-size: 10px;
+        color: #95a5a6;
+    }
+
     .footer {
         text-align: center;
         margin-top: 30px;
@@ -446,12 +532,35 @@ $html = "
 <body>
 
 <div class='header'>
-    <h1>" . htmlspecialchars($title) . "</h1>
+    {$logoHtml}
+    <h1>" . htmlspecialchars($schoolName) . "</h1>
+    <h2 class='election-title'>" . htmlspecialchars($title) . "</h2>
     <h3>Official Election Results Report</h3>
     <div class='sub-info'>Generated: " . date('F d, Y h:i A') . " | Total Voters: {$totalVoters}</div>
 </div>
 
 " . generateRows($conn) . "
+
+<div class='signatures'>
+    <div class='sig-title'>Certification</div>
+    <div class='sig-row'>
+        <div class='sig-block'>
+            <div class='sig-line'></div>
+            <p class='sig-role'>Chairman, Electoral Commission</p>
+            <p class='sig-meta'>Signature &amp; Date</p>
+        </div>
+        <div class='sig-block'>
+            <div class='sig-line'></div>
+            <p class='sig-role'>Returning Officer</p>
+            <p class='sig-meta'>Signature &amp; Date</p>
+        </div>
+        <div class='sig-block'>
+            <div class='sig-line'></div>
+            <p class='sig-role'>Returning Officer</p>
+            <p class='sig-meta'>Signature &amp; Date</p>
+        </div>
+    </div>
+</div>
 
 <div class='footer'>
     This report is generated automatically and serves as the official record of the election results.<br>
