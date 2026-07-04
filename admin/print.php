@@ -7,33 +7,31 @@ use Dompdf\Dompdf;
 
 function generateRows($conn) {
     $html = '';
-    $totalVotesCast = 0;
-
-    // Get total votes cast
-    $totalSql = "SELECT COUNT(DISTINCT voters_id) as total FROM votes";
-    $totalQuery = $conn->query($totalSql);
-    $totalRow = $totalQuery->fetch_assoc();
-    $totalVoters = $totalRow['total'];
 
     $sql = "SELECT * FROM positions ORDER BY priority ASC";
     $query = $conn->query($sql);
 
+    $posStmt = null;
+    $voteCountStmt = $conn->prepare("SELECT COUNT(*) as total FROM votes WHERE candidate_id = ?");
+
     while ($position = $query->fetch_assoc()) {
         $positionId = $position['id'];
         $maxVote = $position['max_vote'];
-        
+
         $candidates = [];
         $totalVotesForPosition = 0;
 
-        // Get candidates with their vote counts
-        $sql = "SELECT * FROM candidates WHERE position_id = '$positionId' ORDER BY lastname ASC";
-        $cquery = $conn->query($sql);
+        // Get candidates
+        $cstmt = $conn->prepare("SELECT * FROM candidates WHERE position_id = ? ORDER BY lastname ASC");
+        $cstmt->bind_param("i", $positionId);
+        $cstmt->execute();
+        $cquery = $cstmt->get_result();
 
         while ($crow = $cquery->fetch_assoc()) {
-            $vsql = "SELECT COUNT(*) as total FROM votes WHERE candidate_id = '".$crow['id']."'";
-            $vquery = $conn->query($vsql);
-            $vrow = $vquery->fetch_assoc();
-            
+            $voteCountStmt->bind_param("i", $crow['id']);
+            $voteCountStmt->execute();
+            $vrow = $voteCountStmt->get_result()->fetch_assoc();
+
             $voteCount = (int)$vrow['total'];
             $totalVotesForPosition += $voteCount;
 
@@ -44,13 +42,11 @@ function generateRows($conn) {
                 'votes' => $voteCount
             ];
         }
+        $cstmt->close();
 
         // Sort by votes descending
         usort($candidates, fn($a, $b) => $b['votes'] - $a['votes']);
 
-        // Calculate max votes for percentage bars
-        $maxVotes = !empty($candidates) ? max(array_column($candidates, 'votes')) : 0;
-        
         // Determine winner(s) - handle ties
         $winners = [];
         if (!empty($candidates) && $candidates[0]['votes'] > 0) {
@@ -68,7 +64,7 @@ function generateRows($conn) {
                 <h2>{$position['description']}</h2>
                 <span class='badge'>" . ($maxVote > 1 ? "Select {$maxVote}" : "Single") . "</span>
             </div>
-            
+
             <div class='stats-row'>
                 <div class='stat-item'>
                     <span class='stat-label'>Total Votes</span>
@@ -91,7 +87,7 @@ function generateRows($conn) {
                         <th class='rank-col'>Rank</th>
                         <th class='candidate-col'>Candidate</th>
                         <th class='votes-col'>Votes</th>
-                        <th class='bar-col'>Progress</th>
+                        <th class='bar-col'>Vote Share</th>
                         <th class='status-col'>Status</th>
                     </tr>
                 </thead>
@@ -99,17 +95,20 @@ function generateRows($conn) {
         ";
 
         $rank = 1;
-        $totalRows = count($candidates);
 
         foreach ($candidates as $c) {
             $voteCount = $c['votes'];
-            $percentage = $maxVotes > 0 ? round(($voteCount / $maxVotes) * 100) : 0;
-            
-            // Determine status
+
+            // Vote share = this candidate's share of ALL votes cast for
+            // this position, not a fraction of the leader's total. This is
+            // what makes it possible for a winner to legitimately show
+            // less than 100% (e.g. a 3-way race).
+            $percentage = $totalVotesForPosition > 0 ? round(($voteCount / $totalVotesForPosition) * 100, 1) : 0;
+
             $status = '';
             $statusClass = '';
             $rankDisplay = $rank;
-            
+
             if ($rank == 1 && $voteCount > 0) {
                 $status = 'WINNER';
                 $statusClass = 'winner';
@@ -132,7 +131,6 @@ function generateRows($conn) {
                 $rankDisplay = $rank . 'th';
             }
 
-            // Bar color based on position
             $barColor = '#3498db';
             if ($rank == 1 && $voteCount > 0) {
                 $barColor = '#27ae60';
@@ -142,16 +140,23 @@ function generateRows($conn) {
                 $barColor = '#e67e22';
             }
 
+            // Bar width still visually scales against the leader so bars
+            // stay readable in a tight race, but the printed number is the
+            // real vote share.
+            $barWidth = $totalVotesForPosition > 0 && !empty($candidates[0]['votes'])
+                ? round(($voteCount / $candidates[0]['votes']) * 100)
+                : 0;
+
             $html .= "
                 <tr class='" . ($rank == 1 && $voteCount > 0 ? 'winner-row' : '') . "'>
                     <td class='rank-col'><strong>{$rankDisplay}</strong></td>
                     <td class='candidate-col'>
-                        <span class='candidate-name'>{$c['name']}</span>
+                        <span class='candidate-name'>" . htmlspecialchars($c['name']) . "</span>
                     </td>
                     <td class='votes-col'><strong>{$voteCount}</strong></td>
                     <td class='bar-col'>
                         <div class='bar-container'>
-                            <div class='bar' style='width: {$percentage}%; background-color: {$barColor};'>
+                            <div class='bar' style='width: {$barWidth}%; background-color: {$barColor};'>
                                 <span class='bar-label'>{$percentage}%</span>
                             </div>
                         </div>
@@ -172,11 +177,21 @@ function generateRows($conn) {
         ";
     }
 
+    $voteCountStmt->close();
+
     return $html;
 }
 
 $parse = parse_ini_file('config.ini', FALSE, INI_SCANNER_RAW);
 $title = $parse['election_title'];
+
+// Total voters — computed here, in the same scope the header uses it, so it
+// no longer silently disappears (it was previously calculated inside
+// generateRows() and never made it back out to this scope).
+$totalSql = "SELECT COUNT(DISTINCT voters_id) as total FROM votes";
+$totalQuery = $conn->query($totalSql);
+$totalRow = $totalQuery->fetch_assoc();
+$totalVoters = (int) $totalRow['total'];
 
 $dompdf = new Dompdf();
 
@@ -354,7 +369,6 @@ $html = "
     .bar {
         height: 100%;
         border-radius: 4px;
-        transition: width 0.3s ease;
         display: flex;
         align-items: center;
         justify-content: flex-end;
@@ -432,7 +446,7 @@ $html = "
 <body>
 
 <div class='header'>
-    <h1>{$title}</h1>
+    <h1>" . htmlspecialchars($title) . "</h1>
     <h3>Official Election Results Report</h3>
     <div class='sub-info'>Generated: " . date('F d, Y h:i A') . " | Total Voters: {$totalVoters}</div>
 </div>
