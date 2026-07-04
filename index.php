@@ -277,7 +277,7 @@
 			<form action="login.php" method="POST">
 				<div class="field">
 					<label for="voter">Voter's ID</label>
-					<input type="text" id="voter" name="voter" placeholder="e.g. VTR-04821" required>
+					<input type="text" id="voter" name="voter" placeholder="e.g. S1XXX" required>
 				</div>
 				<div class="field">
 					<label for="password">Password</label>

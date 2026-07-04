@@ -2,14 +2,22 @@
 	include 'includes/session.php';
 	include 'includes/slugify.php';
 
-	if(!isset($_POST['vote'])){
+	// Debug - remove this line in production
+	// echo "<pre>";
+	// print_r($_POST);
+	// exit;
+
+	// Check if any POST data exists
+	if(empty($_POST)){
 		$_SESSION['error'][] = 'Select candidates to vote first';
 		header('location: home.php');
 		exit;
 	}
 
-	if(count($_POST) == 1){
-		$_SESSION['error'][] = 'Please vote atleast one candidate';
+	// Count how many positions have votes (excluding the 'vote' button)
+	$voteButton = isset($_POST['vote']) ? 1 : 0;
+	if(count($_POST) <= $voteButton){
+		$_SESSION['error'][] = 'Please vote at least one candidate';
 		header('location: home.php');
 		exit;
 	}
@@ -27,6 +35,7 @@
 		$position = slugify($row['description']);
 		$pos_id = (int) $row['id'];
 
+		// Check if this position has votes submitted (using slug as key)
 		if(isset($_POST[$position])){
 			if($row['max_vote'] > 1){
 				$selected = (array) $_POST[$position];
@@ -52,19 +61,12 @@
 	}
 
 	if(empty($votesToInsert)){
-		$_SESSION['error'][] = 'Please vote atleast one candidate';
+		$_SESSION['error'][] = 'Please vote at least one candidate';
 		header('location: home.php');
 		exit;
 	}
 
 	// --- Double-submission guard ---
-	// Everything below runs inside one transaction. We re-check "has this
-	// voter already voted?" here, right before writing, with a row lock
-	// (FOR UPDATE) rather than trusting the check the ballot page did on
-	// load. This is what actually closes the race: if two requests from
-	// the same voter arrive together, the second one blocks on the lock
-	// until the first transaction finishes, then sees the vote already
-	// exists and backs out cleanly instead of inserting a duplicate.
 	$conn->begin_transaction();
 
 	$lockStmt = $conn->prepare("SELECT id FROM votes WHERE voters_id = ? LIMIT 1 FOR UPDATE");
@@ -89,7 +91,7 @@
 		$insertStmt->bind_param("sii", $voter['id'], $v['candidate_id'], $v['position_id']);
 		if(!$insertStmt->execute()){
 			$insertFailed = true;
-			if($conn->errno == 1062){ // duplicate key — the DB-level constraint caught it
+			if($conn->errno == 1062){ // duplicate key
 				$duplicateKey = true;
 			}
 			break;
@@ -107,7 +109,7 @@
 	else{
 		$conn->commit();
 		unset($_SESSION['post']);
-		$_SESSION['success'] = 'Ballot Submitted';
+		$_SESSION['success'] = 'Ballot Submitted Successfully!';
 	}
 
 	header('location: home.php');
